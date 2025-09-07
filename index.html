@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IO Tower - Business & Technology Consulting</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,11 +13,16 @@
     <style>
         /* 1. CSS Variables & Global Reset */
         :root {
-            --bg-dark-primary: #111827;  /* Very dark blue-gray */
-            --bg-dark-secondary: #1F2937; /* Lighter dark blue-gray for cards */
-            --text-primary: #F9FAFB;     /* Off-white */
-            --text-secondary: #9CA3AF; /* Muted gray for subtext */
-            --accent: #06B6D4;          /* Bright cyan/teal */
+            --bg-dark-primary: #111827;
+            /* Very dark blue-gray */
+            --bg-dark-secondary: #1F2937;
+            /* Lighter dark blue-gray for cards */
+            --text-primary: #F9FAFB;
+            /* Off-white */
+            --text-secondary: #9CA3AF;
+            /* Muted gray for subtext */
+            --accent: #06B6D4;
+            /* Bright cyan/teal */
             --accent-hover: #0891B2;
         }
 
@@ -51,7 +57,9 @@
             padding: 6rem 0;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 600;
             line-height: 1.3;
             margin-bottom: 1rem;
@@ -76,12 +84,13 @@
         p {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
-            max-width: 70ch; /* Limits line length for readability */
+            max-width: 70ch;
+            /* Limits line length for readability */
         }
-        
+
         .section-center p {
-             margin-left: auto;
-             margin-right: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .text-center {
@@ -99,7 +108,8 @@
             font-weight: 600;
             text-decoration: none;
             padding: 0.9rem 2.2rem;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
+            /* Pill shape */
             transition: all 0.3s ease;
             border: 2px solid var(--accent);
         }
@@ -115,7 +125,7 @@
             background: transparent;
             color: var(--accent);
         }
-        
+
         .btn-outline:hover {
             background: var(--accent);
             color: var(--text-primary);
@@ -130,7 +140,7 @@
             z-index: 100;
             padding: 1.5rem 0;
             /* Modern "glassmorphism" effect */
-            background: rgba(17, 24, 39, 0.85); 
+            background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--bg-dark-secondary);
         }
@@ -197,12 +207,37 @@
             margin: 0 auto 2.5rem auto;
         }
 
+        /* --- STYLES FOR PARTICLE.JS BACKGROUND --- */
+
+        #home {
+            position: relative;
+            /* This is crucial for positioning the background */
+            overflow: hidden;
+            /* Ensures animation doesn't bleed out */
+        }
+
+        #home .container {
+            /* This makes sure your text stays ON TOP of the animation */
+            position: relative;
+            z-index: 10;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            /* Sits behind the container (z-index: 10) */
+        }
+
 
         /* 5. Services Section */
         #services {
             background-color: var(--bg-dark-secondary);
         }
-        
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -222,11 +257,11 @@
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         .service-card h3 {
             margin-bottom: 1rem;
         }
-        
+
         .service-card p {
             font-size: 0.95rem;
             margin-bottom: 0;
@@ -240,7 +275,7 @@
             margin-top: 3rem;
             text-align: center;
         }
-        
+
         .step {
             padding: 2rem;
         }
@@ -258,7 +293,7 @@
             border-radius: 50%;
             text-align: center;
         }
-        
+
         .step h3 {
             margin-bottom: 0.5rem;
             text-align: center;
@@ -284,7 +319,7 @@
             font-size: 1.15rem;
             margin-bottom: 2.5rem;
         }
-        
+
         /* 8. Footer */
         footer {
             padding: 2.5rem 0;
@@ -297,16 +332,16 @@
             color: var(--text-secondary);
             margin-bottom: 0;
         }
-        
+
         /* 9. Animation & Responsive */
-        
+
         /* JS Fade-in Animation Class */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
+
         .fade-in.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -314,35 +349,44 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1, #home h1 {
+
+            h1,
+            #home h1 {
                 font-size: 2.8rem;
             }
+
             h2 {
                 font-size: 2rem;
             }
+
             #home p {
                 font-size: 1.1rem;
             }
-            
+
             nav {
-                display: none; /* Simplification for this single-file build. A real site would use JS for a hamburger menu. */
+                display: none;
+                /* Simplification for this single-file build. A real site would use JS for a hamburger menu. */
             }
-        }
-        
-         @media (max-width: 480px) {
-            h1, #home h1 {
-                font-size: 2.2rem;
-            }
-             .container {
-                 padding: 0 1.2rem;
-             }
-             section {
-                 padding: 4rem 0;
-             }
         }
 
+        @media (max-width: 480px) {
+
+            h1,
+            #home h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 1.2rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -361,9 +405,12 @@
     <main>
 
         <section id="home">
+            <div id="particles-js"></div>
+
             <div class="container fade-in">
                 <h1>Build <span class="text-accent">Smarter</span>. Scale <span class="text-accent">Faster</span>.</h1>
-                <p>IO Tower is your dedicated partner at the intersection of software and business. We turn complex tech challenges into strategic, scalable assets.</p>
+                <p>IO Tower is your dedicated partner at the intersection of software and business. We turn complex tech
+                    challenges into strategic, scalable assets.</p>
                 <a href="#contact" class="btn">Let's Talk Strategy</a>
             </div>
         </section>
@@ -373,27 +420,31 @@
             <div class="container">
                 <h2 class="fade-in">What We Do</h2>
                 <div class="services-grid">
-                    
+
                     <div class="service-card fade-in">
                         <h3>AI & Data Strategy</h3>
-                        <p>Leverage the power of artificial intelligence. We consult on implementing AI models, automating processes, and deriving actionable insights from your data.</p>
+                        <p>Leverage the power of artificial intelligence. We consult on implementing AI models,
+                            automating processes, and deriving actionable insights from your data.</p>
                     </div>
 
                     <div class="service-card fade-in">
                         <h3>DevOps & CI/CD Pipelines</h3>
-                        <p>Ship software faster and more reliably. We design and build robust, automated continuous integration and delivery (CI/CD) pipelines tailored to your stack.</p>
+                        <p>Ship software faster and more reliably. We design and build robust, automated continuous
+                            integration and delivery (CI/CD) pipelines tailored to your stack.</p>
                     </div>
-                    
+
                     <div class="service-card fade-in">
                         <h3>Custom Software Development</h3>
-                        <p>From internal tools and small business websites to complex enterprise systems, our team provides full-stack development and team augmentation.</p>
+                        <p>From internal tools and small business websites to complex enterprise systems, our team
+                            provides full-stack development and team augmentation.</p>
                     </div>
-                    
+
                     <div class="service-card fade-in">
                         <h3>Technology & Process Advisory</h3>
-                        <p>Need guidance? We help you choose the right tech stack, optimize your software development lifecycle, and improve inefficient business processes.</p>
+                        <p>Need guidance? We help you choose the right tech stack, optimize your software development
+                            lifecycle, and improve inefficient business processes.</p>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -402,28 +453,33 @@
         <section id="approach">
             <div class="container text-center section-center">
                 <h2 class="fade-in">A Practical Path to Powerful Tech</h2>
-                <p class="fade-in">Technology should be an accelerator, not a bottleneck. Our process is transparent, collaborative, and focused entirely on your business outcomes.</p>
-                
+                <p class="fade-in">Technology should be an accelerator, not a bottleneck. Our process is transparent,
+                    collaborative, and focused entirely on your business outcomes.</p>
+
                 <div class="approach-steps">
                     <div class="step fade-in">
                         <span class="step-number">1</span>
                         <h3>Discover</h3>
-                        <p>We analyze your goals, existing systems, and unique hurdles to understand the core business problem.</p>
+                        <p>We analyze your goals, existing systems, and unique hurdles to understand the core business
+                            problem.</p>
                     </div>
                     <div class="step fade-in">
                         <span class="step-number">2</span>
                         <h3>Architect</h3>
-                        <p>We design a practical, scalable solution—from tech stack and infrastructure to process flow.</p>
+                        <p>We design a practical, scalable solution—from tech stack and infrastructure to process flow.
+                        </p>
                     </div>
                     <div class="step fade-in">
                         <span class="step-number">3</span>
                         <h3>Implement</h3>
-                        <p>Our expert team builds, integrates, and delivers, whether it's a new pipeline, an AI model, or a full internal system.</p>
+                        <p>Our expert team builds, integrates, and delivers, whether it's a new pipeline, an AI model,
+                            or a full internal system.</p>
                     </div>
                     <div class="step fade-in">
                         <span class="step-number">4</span>
                         <h3>Empower</h3>
-                        <p>We augment your team, provide clear documentation, and ensure you are empowered for long-term success.</p>
+                        <p>We augment your team, provide clear documentation, and ensure you are empowered for long-term
+                            success.</p>
                     </div>
                 </div>
             </div>
@@ -433,7 +489,8 @@
         <section id="contact">
             <div class="container fade-in">
                 <h2>Let's Build Your Future</h2>
-                <p>Ready to transform your technical challenges into a competitive advantage? Reach out today, and let's start the conversation.</p>
+                <p>Ready to transform your technical challenges into a competitive advantage? Reach out today, and let's
+                    start the conversation.</p>
                 <a href="mailto:iotower.dev@gmail.com" class="btn">Get In Touch</a>
             </div>
         </section>
@@ -442,7 +499,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="current-year"></span> IO Tower. All rights reserved. &nbsp;&middot;&nbsp; Medford, MA 02155</p></p>
+            <p>&copy; <span id="current-year"></span> IO Tower. All rights reserved. &nbsp;&middot;&nbsp; Medford, MA
+                02155</p>
+            </p>
         </div>
     </footer>
 
@@ -453,10 +512,10 @@
          * This script uses the modern IntersectionObserver API to add a class to elements
          * when they enter the viewport, triggering the CSS fade-in animation.
          */
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Set current year dynamically
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            
+
             const fadeElements = document.querySelectorAll('.fade-in');
 
             if ("IntersectionObserver" in window) {
@@ -483,5 +542,77 @@
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+        /* This config creates the "connecting stars" effect using your site's color palette.
+        We use your --accent color (#06B6D4) for the "stars" (dots) and your
+        --text-secondary color (#9CA3AF) for the subtle connecting lines.
+        */
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 60, /* Lower count for a minimal, clean look */
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#06B6D4" /* Your --accent color */
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.6,
+                    "random": true
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#9CA3AF", /* Your --text-secondary color */
+                    "opacity": 0.2,    /* Very subtle lines */
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5, /* Slow, calming movement */
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab" /* Connects lines to your cursor on hover */
+                    },
+                    "onclick": {
+                        "enable": false /* Disabled clicks so it's purely background */
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 180,
+                        "line_opacity": 0.35
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+
 </body>
+
 </html>
