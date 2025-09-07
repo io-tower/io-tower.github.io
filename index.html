@@ -1,1 +1,487 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO Tower - Business & Technology Consulting</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. CSS Variables & Global Reset */
+        :root {
+            --bg-dark-primary: #111827;  /* Very dark blue-gray */
+            --bg-dark-secondary: #1F2937; /* Lighter dark blue-gray for cards */
+            --text-primary: #F9FAFB;     /* Off-white */
+            --text-secondary: #9CA3AF; /* Muted gray for subtext */
+            --accent: #06B6D4;          /* Bright cyan/teal */
+            --accent-hover: #0891B2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* This single line enables smooth scrolling for the nav links */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 2. Re-usable Components */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            max-width: 70ch; /* Limits line length for readability */
+        }
+        
+        .section-center p {
+             margin-left: auto;
+             margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px; /* Pill shape */
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+
+
+        /* 3. Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 0;
+            /* Modern "glassmorphism" effect */
+            background: rgba(17, 24, 39, 0.85); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-dark-secondary);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo .text-accent {
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+
+        /* 4. Hero Section */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        #home .container {
+            max-width: 900px;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #home p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin: 0 auto 2.5rem auto;
+        }
+
+
+        /* 5. Services Section */
+        #services {
+            background-color: var(--bg-dark-secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-dark-primary);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* 6. Approach Section */
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .step {
+            padding: 2rem;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            border: 2px solid var(--accent);
+            width: 60px;
+            height: 60px;
+            line-height: 56px;
+            border-radius: 50%;
+            text-align: center;
+        }
+        
+        .step h3 {
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .step p {
+            font-size: 0.95rem;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        /* 7. Contact Section */
+        #contact {
+            background-color: var(--bg-dark-secondary);
+        }
+
+        #contact .container {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        #contact p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        /* 8. Footer */
+        footer {
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--bg-dark-secondary);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+        
+        /* 9. Animation & Responsive */
+        
+        /* JS Fade-in Animation Class */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1, #home h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            #home p {
+                font-size: 1.1rem;
+            }
+            
+            nav {
+                display: none; /* Simplification for this single-file build. A real site would use JS for a hamburger menu. */
+            }
+        }
+        
+         @media (max-width: 480px) {
+            h1, #home h1 {
+                font-size: 2.2rem;
+            }
+             .container {
+                 padding: 0 1.2rem;
+             }
+             section {
+                 padding: 4rem 0;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#home" class="logo">IO<span class="text-accent">Tower</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#approach">Our Approach</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home">
+            <div class="container fade-in">
+                <h1>Build <span class="text-accent">Smarter</span>. Scale <span class="text-accent">Faster</span>.</h1>
+                <p>IO Tower is your dedicated partner at the intersection of software and business. We turn complex tech challenges into strategic, scalable assets.</p>
+                <a href="#contact" class="btn">Let's Talk Strategy</a>
+            </div>
+        </section>
+
+
+        <section id="services">
+            <div class="container">
+                <h2 class="fade-in">What We Do</h2>
+                <div class="services-grid">
+                    
+                    <div class="service-card fade-in">
+                        <h3>AI & Data Strategy</h3>
+                        <p>Leverage the power of artificial intelligence. We consult on implementing AI models, automating processes, and deriving actionable insights from your data.</p>
+                    </div>
+
+                    <div class="service-card fade-in">
+                        <h3>DevOps & CI/CD Pipelines</h3>
+                        <p>Ship software faster and more reliably. We design and build robust, automated continuous integration and delivery (CI/CD) pipelines tailored to your stack.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in">
+                        <h3>Custom Software Development</h3>
+                        <p>From internal tools and small business websites to complex enterprise systems, our team provides full-stack development and team augmentation.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in">
+                        <h3>Technology & Process Advisory</h3>
+                        <p>Need guidance? We help you choose the right tech stack, optimize your software development lifecycle, and improve inefficient business processes.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <section id="approach">
+            <div class="container text-center section-center">
+                <h2 class="fade-in">A Practical Path to Powerful Tech</h2>
+                <p class="fade-in">Technology should be an accelerator, not a bottleneck. Our process is transparent, collaborative, and focused entirely on your business outcomes.</p>
+                
+                <div class="approach-steps">
+                    <div class="step fade-in">
+                        <span class="step-number">1</span>
+                        <h3>Discover</h3>
+                        <p>We analyze your goals, existing systems, and unique hurdles to understand the core business problem.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <span class="step-number">2</span>
+                        <h3>Architect</h3>
+                        <p>We design a practical, scalable solution—from tech stack and infrastructure to process flow.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <span class="step-number">3</span>
+                        <h3>Implement</h3>
+                        <p>Our expert team builds, integrates, and delivers, whether it's a new pipeline, an AI model, or a full internal system.</p>
+                    </div>
+                    <div class="step fade-in">
+                        <span class="step-number">4</span>
+                        <h3>Empower</h3>
+                        <p>We augment your team, provide clear documentation, and ensure you are empowered for long-term success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="contact">
+            <div class="container fade-in">
+                <h2>Let's Build Your Future</h2>
+                <p>Ready to transform your technical challenges into a competitive advantage? Reach out today, and let's start the conversation.</p>
+                <a href="mailto:iotower.dev@gmail.com" class="btn">Get In Touch</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> IO Tower. All rights reserved. &nbsp;&middot;&nbsp; Medford, MA 02155</p></p>
+        </div>
+    </footer>
+
+
+    <script>
+        /**
+         * Minimalist Fade-in-on-Scroll Animation
+         * This script uses the modern IntersectionObserver API to add a class to elements
+         * when they enter the viewport, triggering the CSS fade-in animation.
+         */
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set current year dynamically
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target); // Stop observing once it's visible
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Trigger when 10% of the element is visible
+                });
+
+                fadeElements.forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback for very old browsers (just show all elements)
+                fadeElements.forEach(el => {
+                    el.classList.add('is-visible');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
