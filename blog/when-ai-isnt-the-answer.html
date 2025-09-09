@@ -363,9 +363,21 @@
                 font-size: 1.1rem;
             }
 
-            nav {
-                display: none;
-                /* Simplification for this single-file build. A real site would use JS for a hamburger menu. */
+                /* Stacks the logo on top of the navigation block */
+            header .container {
+                flex-direction: column;
+                gap: 1.5rem; /* Adds spacing between your logo and the nav links */
+            }
+
+            /* Stacks the nav links vertically */
+            nav ul {
+                flex-direction: column;
+                gap: 1.2rem; /* Adds spacing between each link */
+            }
+
+            /* Removes the horizontal margin that was needed for desktop */
+            nav li {
+                margin-left: 0;
             }
         }
 
